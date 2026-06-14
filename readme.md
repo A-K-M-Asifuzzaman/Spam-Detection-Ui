@@ -1,214 +1,153 @@
-# 🛡️ Spam Detector - AI-Powered Message Verification
+# SpamShield — ML Spam Detection
 
-A beautiful and modern web application for detecting spam messages using Machine Learning and Natural Language Processing. Built with React and powered by a FastAPI backend.
+A real-time spam classifier built as a full-stack ML portfolio project. The frontend is a React SPA; the backend is a Python REST API powered by a Naive Bayes + TF-IDF model trained on the SMS Spam Collection dataset.
 
-![Spam Detector](https://img.shields.io/badge/React-18.2.0-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
-![License](https://img.shields.io/badge/license-MIT-orange)
+![React](https://img.shields.io/badge/React-18.2-blue?style=flat-square&logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green?style=flat-square&logo=fastapi)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?style=flat-square&logo=scikit-learn)
+![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)
 
-## ✨ Features
-
-- 🎨 **Beautiful UI** - Modern gradient design with glassmorphism effects
-- 🌊 **Smooth Animations** - Engaging user experience with fluid transitions
-- 🤖 **AI-Powered** - Machine learning model for accurate spam detection
-- ⚡ **Real-time Analysis** - Instant message verification
-- 📱 **Responsive Design** - Works seamlessly on all devices
-- 🎯 **Easy to Use** - Simple and intuitive interface
-
-## 🚀 Live Demo
-
-- **Frontend**: [Coming Soon]
-- **Backend API**: https://spam-detection-e1hd.onrender.com/
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React** 18.2.0
-- **Lucide React** - Modern icon library
-- **Vite** - Fast build tool
-- **CSS3** - Custom animations and styling
-
-### Backend
-- **FastAPI** - High-performance Python web framework
-- **Scikit-learn** - Machine learning model
-- **NLTK** - Natural language processing
-- **Pickle** - Model serialization
-
-## 📦 Installation
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Steps
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/spam-detector.git
-cd spam-detector
-```
-
-2. **Install dependencies**
-```bash
-npm install
-```
-
-3. **Update API URL** (if needed)
-
-Open `src/App.jsx` and update the API URL:
-```javascript
-const API_URL = 'https://spam-detection-e1hd.onrender.com/';
-```
-
-4. **Run development server**
-```bash
-npm run dev
-```
-
-5. **Build for production**
-```bash
-npm run build
-```
-
-## 📁 Project Structure
-
-```
-spam-detector-frontend/
-├── public/
-├── src/
-│   ├── App.jsx          # Main React component
-│   ├── App.css          # Styling and animations
-│   ├── main.jsx         # React entry point
-│   └── index.css        # Global styles
-├── index.html           # HTML template
-├── package.json         # Dependencies
-├── vite.config.js       # Vite configuration
-└── README.md           # Project documentation
-```
-
-## 🎯 Usage
-
-1. Open the application in your browser
-2. Enter or paste the message you want to check
-3. Click "Check Message" button
-4. View the result:
-   - ✅ **Safe** - Message is legitimate
-   - ⚠️ **Spam** - Message appears to be spam
-5. Click "Reset" to check another message
-
-## 🔌 API Reference
-
-### Base URL
-```
-https://spam-detection-e1hd.onrender.com/
-```
-
-### Endpoints
-
-#### GET `/`
-Health check endpoint
-
-**Response:**
-```json
-{
-  "message": "Spam Detection API Running!"
-}
-```
-
-#### POST `/predict`
-Predict if a message is spam
-
-**Request Body:**
-```json
-{
-  "text": "Your message here"
-}
-```
-
-**Response:**
-```json
-{
-  "spam": true  // or false
-}
-```
-
-## 🎨 Features Breakdown
-
-### Design Elements
-- **Gradient Background** - Smooth purple-to-pink gradient
-- **Animated Orbs** - Floating background elements
-- **Glassmorphism** - Frosted glass effect on cards
-- **Hover Effects** - Interactive button animations
-- **Loading States** - Spinner animation during API calls
-- **Error Handling** - Shake animation for errors
-- **Success/Error Alerts** - Color-coded results
-
-### Animations
-- Fade-in effects
-- Scale transformations
-- Bounce animations
-- Pulse effects
-- Shake on errors
-- Smooth transitions
-
-## 🧪 Testing Messages
-
-Try these sample messages:
-
-**Spam Examples:**
-```
-"Congratulations! You've won $1000000! Click here to claim now!"
-"URGENT: Your bank account has been compromised. Reply with your password"
-"Get rich quick! Make $5000 per day working from home!"
-```
-
-**Legitimate Examples:**
-```
-"Hey, are we still meeting for coffee tomorrow at 3pm?"
-"The project deadline has been extended to next Friday"
-"Thanks for your help with the presentation today"
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
-
-```env
-VITE_API_URL=https://spam-detection-6lm9.onrender.com
-```
-
-Update `src/App.jsx`:
-```javascript
-const API_URL = import.meta.env.VITE_API_URL;
-```
-
-## 📱 Responsive Design
-
-The application is fully responsive and works on:
-- 📱 Mobile devices (320px+)
-- 📱 Tablets (768px+)
-- 💻 Desktops (1024px+)
-- 🖥️ Large screens (1440px+)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 🙏 Acknowledgments
-
-- FastAPI for the amazing backend framework
-- React team for the incredible frontend library
-- Lucide for the beautiful icons
-- NLTK for natural language processing tools
+**Live API:** https://spam-detection-e1hd.onrender.com
 
 ---
 
-Made with ❤️ and ☕ by Asif Zaman
+## Overview
+
+The model is trained on the UCI SMS Spam Collection dataset (~5,500 labelled messages). Text is preprocessed and vectorized with TF-IDF; a Multinomial Naive Bayes classifier then predicts the label. Accuracy on the held-out test set is approximately 98%.
+
+The React frontend calls the `/predict` endpoint on every submission and displays an immediate verdict.
+
+---
+
+## Tech Stack
+
+| Layer     | Technology                            |
+|-----------|---------------------------------------|
+| Frontend  | React 18, Vite, Lucide React, CSS3    |
+| Backend   | Python, FastAPI, Uvicorn              |
+| ML        | scikit-learn (TF-IDF + Naive Bayes)   |
+| NLP       | NLTK (tokenization, stopwords)        |
+| Deploy    | Render (API), static hosting (UI)     |
+
+---
+
+## Project Structure
+
+```
+Spam-Detection-Ui/       # React frontend
+├── src/
+│   ├── App.jsx          # Main component & API integration
+│   ├── App.css          # Component styles
+│   ├── index.css        # Global styles & font import
+│   └── main.jsx         # Entry point
+├── index.html
+├── vite.config.js
+└── package.json
+```
+
+The backend repository contains the model training notebook, serialized model artifacts, and the FastAPI server.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v16+
+- npm
+
+### Run locally
+
+```bash
+git clone https://github.com/zasif855/spam-detection.git
+cd spam-detection/Spam-Detection-Ui
+
+npm install
+npm run dev
+```
+
+The app starts at `http://localhost:5173`.
+
+By default, the frontend points at the hosted API. To use a local backend, change the `API_URL` constant in `src/App.jsx`:
+
+```js
+const API_URL = 'http://localhost:8000';
+```
+
+### Build for production
+
+```bash
+npm run build   # outputs to dist/
+```
+
+---
+
+## API Reference
+
+Base URL: `https://spam-detection-e1hd.onrender.com`
+
+### GET `/`
+
+Health check.
+
+```json
+{ "message": "Spam Detection API Running!" }
+```
+
+### POST `/predict`
+
+Classify a message.
+
+**Request**
+```json
+{ "text": "Congratulations, you've won a free prize! Click here." }
+```
+
+**Response**
+```json
+{ "spam": true }
+```
+
+---
+
+## Sample Messages
+
+**Spam**
+```
+Congratulations! You've won $1,000,000. Claim your prize now.
+URGENT: Your account has been suspended. Reply with your password.
+Make $500/day working from home — limited spots available!
+```
+
+**Legitimate**
+```
+Hey, are we still on for coffee tomorrow at 3pm?
+The project deadline has been moved to next Friday.
+Can you send me the slides from today's meeting?
+```
+
+---
+
+## Environment Variables
+
+To configure the API URL via an env file instead of hardcoding it:
+
+```env
+# .env
+VITE_API_URL=https://spam-detection-e1hd.onrender.com
+```
+
+```js
+// src/App.jsx
+const API_URL = import.meta.env.VITE_API_URL;
+```
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
+
+---
+
+Built by **Asif Zaman**
